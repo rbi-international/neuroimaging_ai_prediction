@@ -1,0 +1,55 @@
+# ===========================
+# 🧠 Dataset Configuration
+# ===========================
+data:
+  dataset_name: "ixi"                             # Options: ixi, hcp, adni, oasis
+  raw_dir: "data/raw/ixi"
+  processed_dir: "data/processed/ixi"
+  slices_dir: "data/slices/ixi"
+  metadata_csv: "data/metadata/ixi_metadata.csv"
+  class_names: ["Normal", "Abnormal"]
+
+# ===========================
+# 🧠 Model Settings
+# ===========================
+model:
+  type: "cnn_2d"                                   # Options: cnn_2d, cnn_3d, vit
+  input_size: [128, 128]
+  input_channels: 1
+  num_classes: 2
+  pretrained: false
+  save_path: "models/ixi_cnn.pth"
+
+# ===========================
+# 🏋️ Training Parameters
+# ===========================
+train:
+  epochs: 5
+  batch_size: 16
+  learning_rate: 0.0001
+  use_mixed_precision: false
+  seed: 42
+
+# ===========================
+# 🧪 Evaluation Settings
+# ===========================
+eval:
+  batch_size: 16
+  save_confusion_matrix: true
+  save_classification_report: true
+
+# ===========================
+# 📊 Output & Logging
+# ===========================
+logging:
+  log_level: "INFO"
+  log_file: "logs/train.log"
+
+output:
+  checkpoint_dir: "models/checkpoints/"
+  prediction_dir: "outputs/predictions/"
+  visualizations_dir: "outputs/visualizations/"
+  metrics_dir: "outputs/metrics/"
+  report_dir: "outputs/report/"
+  comparison_table_path: "outputs/report/metrics_summary.csv"
+  confusion_matrix_filename: "confusion_matrix.png"
